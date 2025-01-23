@@ -1,0 +1,204 @@
+.bg-custom {
+    background: linear-gradient(135deg, #071952, #0a3851); /* Gradient background for depth */
+    color: #fff;
+    box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 20px;
+    height: 100vh;
+  }
+  
+  .nav-link {
+    font-size: 1.2rem; /* Slightly larger font size */
+    padding: 12px 25px; /* More padding for a spacious feel */
+    font-weight: 600; /* Bold text for a modern feel */
+    letter-spacing: 0.5px; /* Slight spacing for better readability */
+    transition: all 0.3s ease;
+  }
+  
+  
+  .btn-danger {
+    background-color: #d9534f;
+    border: none;
+    font-size: 1.2rem; /* Slightly larger font size */
+    font-weight: bold;
+    padding: 12px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c9302c;
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1); /* Shadow for 3D effect */
+  }
+  
+  .nav-item {
+    margin-bottom: 20px; /* More spacing between items */
+  }
+  
+  .text-center h5 {
+    margin-top: 15px;
+    font-size: 1.4rem; /* Larger font size for heading */
+    font-weight: 700; /* Bold heading for better prominence */
+    letter-spacing: 1px; /* Increased letter spacing for a more premium look */
+  }
+  
+  .text-center img {
+    border: 4px solid #fff; /* White border around profile picture */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for profile picture */
+  }
+  
+  .text-center h5 {
+    font-size: 1.3rem; /* Larger font size for better visibility */
+    color: #fff;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  .nav-item button {
+    text-align: justify;
+    padding-left: 20px; /* Add padding for better alignment */
+  }
+  
+  /* Add a small animation on the sidebar container */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateX(-50px); }
+    100% { opacity: 1; transform: translateX(0); }
+  }
+  
+  .bg-custom {
+    animation: fadeIn 0.5s ease-out;
+  }
+  
+  /* Table hover effect */
+  .hover-row:hover {
+    background-color: #f1f1f1; /* Slight hover effect on table rows */
+    transform: translateY(-2px);
+  }
+  
+  .btn {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 12px 18px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-warning {
+    background-color: #f0ad4e;
+    border-color: #f0ad4e;
+  }
+  
+  .btn-warning:hover {
+    background-color: #ec971f;
+    border-color: #d58512;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-danger {
+    background-color: #d9534f;
+    border-color: #d9534f;
+  }
+  
+  .btn-danger:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Font Awesome Icons in Buttons */
+  .btn i {
+    font-size: 1.1rem;
+  }
+  
+  table th,
+  table td {
+    padding: 12px;
+    text-align: center;
+  }
+  
+  table th {
+    font-weight: bold;
+  }
+  
+  table tr {
+    transition: background-color 0.3s ease;
+  }
+  
+  table tr:hover {
+    background-color: #eaeaea;
+  }
+  
+
+
+
+  /*add*/
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #071952;
+  }
+
+  .form-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: #333;
+  }
+
+  .custom-input {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ccc;
+    transition: all 0.3s ease;
+  }
+
+  .custom-input:focus {
+    outline: none;
+    border-color: #088395;
+    box-shadow: 0 0 8px rgba(8, 131, 149, 0.5);
+  }
+
+  .mb-2 {
+    margin-bottom: 15px; /* Reduced margin for closer fields */
+  }
+
+  .custom-btn {
+    font-size: 1.1rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+
+  .custom-btn:hover {
+    background-color: #088395;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-select {
+    padding: 10px 14px;
+    font-size: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .form-select:focus {
+    outline: none;
+    border-color: #088395;
+    box-shadow: 0 0 8px rgba(8, 131, 149, 0.5);
+  }
+
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  .btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
