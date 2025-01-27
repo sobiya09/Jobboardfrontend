@@ -1,59 +1,99 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; 
-import './navbar.css';
-
+import React, { useState } from 'react';
+import { FaBars } from 'react-icons/fa';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const sidebarRef = useRef(null);
 
-  const toggleSidebar = () => {
+  const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
-
-  useEffect(() => {
-    const handleOutsideClick = (e) => {
-      if (sidebarRef.current && !sidebarRef.current.contains(e.target) && isOpen) {
-        closeMenu();
-      }
-    };
-
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [isOpen]);
-
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">Job board</div>
+    <nav className="navbar navbar-expand-md sticky-top" style={{ backgroundColor: '#f9fafc' }}>
+      <div className="container-fluid">
+        <a className="navbar-brand fw-bold" href="#home" style={{ fontSize: '24px', color: '#071952' }}>
+          Job board
+        </a>
 
+        <button className="navbar-toggler" type="button" onClick={toggleNavbar}>
+          <FaBars />
+        </button>
 
-      <div className="hamburger" onClick={toggleSidebar}>
-        <FaBars className="hamburger-icon" />
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav ms-auto">
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="/"
+                onClick={() => setIsOpen(false)}
+                style={{ color: '#088394',
+                  fontWeight: 500,
+                  marginLeft: '10px',
+                  marginRight: '10px'
+                 }} 
+              >
+                HOME
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="#about"
+                onClick={() => setIsOpen(false)}
+                style={{ color: '#088394',
+                  fontWeight: 500,
+                  marginLeft: '10px',
+                  marginRight: '10px'
+                 }} 
+              >
+                ABOUT US
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link bold"
+                href="/jobs"
+                onClick={() => setIsOpen(false)}
+                style={{ color: '#088394', 
+                  fontWeight: 500,
+                  marginLeft: '10px',
+                  marginRight: '10px' }} 
+              >
+                JOB DETAILS
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                className="nav-link"
+                href="#contact"
+                onClick={() => setIsOpen(false)}
+                style={{ color: '#088394',
+                  fontWeight: 500,
+                  marginLeft: '10px',
+                  marginRight: '20px'
+                 }} 
+              >
+                CONTACT
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="/login"
+                onClick={() => setIsOpen(false)}
+                className="btn"
+                style={{
+                  backgroundColor: '#071950', 
+                  color: '#fff',
+                  borderRadius: '20px',
+                }}
+              >
+                Login
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
-
-      <ul
-        ref={sidebarRef}
-        className={`nav-links ${isOpen ? 'open' : ''}`}
-      >
-        <li className="close-icon" onClick={closeMenu}>
-          <FaTimes />
-        </li>
-        <li><a href="/" onClick={closeMenu}>HOME</a></li>
-        <li><a href="#about" onClick={closeMenu}>ABOUT US</a></li>
-        <li><a href="/jobs" onClick={closeMenu}>JOB DETAILS</a></li>
-        <li><a href="#contact" onClick={closeMenu}>CONTACT</a></li>
-        <li>
-          <a href="#login" className="login-button" onClick={closeMenu}>Login</a>
-        </li>
-      </ul>
-
-      {isOpen && <div className="overlay" onClick={closeMenu}></div>}
     </nav>
   );
 }
