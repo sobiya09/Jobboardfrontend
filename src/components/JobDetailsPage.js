@@ -40,7 +40,7 @@ const JobDetailsPage = () => {
               style={{ borderRadius: "15px" }}
             >
                                 {/* Dynamic Job Image */}
-                                <img
+                   <img
                     src={
                       job.image
                     }

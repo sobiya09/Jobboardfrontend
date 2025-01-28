@@ -398,17 +398,17 @@ const renderUpdateJobsSection = () => (
                     }}
                   /></td>
                 <td>
-  <div className="d-flex">
-    <button
-      className="btn btn-primary btn-sm me-2 px-3 py-2 text-white"
-      onClick={() => setEditJob(job)}
-    >
-      <i className="fas fa-edit me-1"></i> Edit
-    </button>
-    <button
-      className="btn btn-danger btn-sm px-3 py-2 text-white"
-      onClick={() => handleDeleteJob(job.id)}
-    >
+                <div className="d-flex">
+                  <button
+                    className="btn btn-primary btn-sm me-2 px-3 py-2 text-white"
+                  onClick={() => setEditJob(job)}
+                  >
+                 <i className="fas fa-edit me-1"></i> Edit
+               </button>
+               <button
+                    className="btn btn-danger btn-sm px-3 py-2 text-white"
+                    onClick={() => handleDeleteJob(job.id)}
+                >
       <i className="fas fa-trash me-1"></i> Delete
     </button>
   </div>
@@ -471,31 +471,8 @@ const renderUpdateJobsSection = () => (
       setEditJob({ ...editJob, image: e.target.files[0] })
     }
   />
-        
-           
-        
+
             </div>
-            {/* Display the current image if it exists
-            {editJob.image && typeof editJob.image === 'string' && (
-                <div className="mt-3">
-                  <label className="form-label">Current Image:</label>
-                  <img
-                    src={editJob.image}
-                    alt="Current Job"
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      height: 'auto',
-                      maxHeight: '200px',
-                      objectFit: 'cover',
-                      marginTop: '10px',
-                      borderRadius: '5px',
-                    }}
-                  />
-                </div>
-              )} */}
-           
-          
 
             <div className="modal-footer">
               <button className="btn btn-primary" onClick={handleUpdateJob}>
