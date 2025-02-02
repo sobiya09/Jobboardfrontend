@@ -77,7 +77,7 @@ function Navbar() {
                 CONTACT
               </a>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <a
                 href="/login"
                 onClick={() => setIsOpen(false)}
@@ -90,7 +90,7 @@ function Navbar() {
               >
                 Login
               </a>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

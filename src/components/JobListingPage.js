@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import jobImage from "../assets/hs.png";
+
 import Header from "./Header"; // Import the Header component
 import Footer from "./footer"; // Import the Footer component
 

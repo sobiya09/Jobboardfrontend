@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { FaUser, FaEnvelope, FaPhone, FaRegCalendarAlt, FaDollarSign, FaFileUpload } from 'react-icons/fa'; // Import icons
-import { TextField, Button, Checkbox, FormControlLabel, Box, Container, Typography, Card, CardHeader, CardContent, FormHelperText } from '@mui/material';  // Import MUI components
-import Header from './Header';  // Import the Header component
-import Footer from './footer';  // Import the Footer component
+import { FaUser, FaEnvelope, FaPhone, FaRegCalendarAlt, FaDollarSign, FaFileUpload } from 'react-icons/fa';
+import Header from '../components/Header';
+import Footer from '../components/footer';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CVUploadPage = () => {
-  const { id } = useParams(); // Get job ID from the URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '', // Mobile phone number
-    age: '', // Age
-    salary: '', // Expected salary
+    phone: '',
+    age: '',
+    salary: '',
     file: null,
-    acceptTerms: false, // For the checkbox
+    acceptTerms: false,
   });
 
   const handleChange = (e) => {
@@ -34,170 +34,114 @@ const CVUploadPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { name, email, phone, age, salary, file, acceptTerms } = formData;
-    const jobId = id; // job ID comes from the URL
-
-    if (!acceptTerms) {
+    if (!formData.acceptTerms) {
       alert('Please accept the terms and confirm the provided details are correct.');
       return;
     }
 
-    // Create a new FormData object to append the data
     const formDataToSend = new FormData();
-    formDataToSend.append('name', name);
-    formDataToSend.append('email', email);
-    formDataToSend.append('phone', phone);
-    formDataToSend.append('age', age);
-    formDataToSend.append('salary', salary);
-    formDataToSend.append('file', file); // 'file' should be the uploaded file object
-    formDataToSend.append('job', jobId);  // 'jobId' is the job ID
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('email', formData.email);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('age', formData.age);
+    formDataToSend.append('salary', formData.salary);
+    formDataToSend.append('file', formData.file);
+    formDataToSend.append('job', id);
 
-    // Send the data using axios
-    axios
-      .post('http://127.0.0.1:8000/api/upload_cv/', formDataToSend, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Set the content type as multipart/form-data
-        },
+    axios.post('http://127.0.0.1:8000/api/upload_cv/', formDataToSend, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+      .then(() => {
+        alert('Thank you for applying! 🎉 Our recruitment team will review your CV and get back to you soon.CV uploaded successfully!');
+        navigate('/');
       })
-      .then((response) => {
-        console.log(response.data); // Log the response data
-        alert('CV uploaded successfully!');
-        navigate('/'); // Redirect to home page
-      })
-      .catch((error) => {
-        console.error(error); // Log any errors that occur during the upload
+      .catch(() => {
         alert('Failed to upload CV. Please try again.');
       });
   };
 
   return (
-    <div>
-      <Header />  {/* Including the Header component */}
-      <Container maxWidth="sm" sx={{ background: `url('https://source.unsplash.com/1600x900/?office') no-repeat center center/cover`, backgroundSize: 'cover', padding: '50px 0', borderRadius: '10px' }}>
-        <Card sx={{ borderRadius: 2, boxShadow: 3 }}>
-          <CardHeader
-            title="Apply for Job"
-            sx={{ backgroundColor: '#071952', color: 'white', textAlign: 'center', padding: '20px' }}
-          />
-          <CardContent sx={{ backgroundColor: '#f7f7f7' }}>
+    <div style={{ backgroundColor: '#f8f9fa', minHeight: '100vh' }}>
+      <Header />
+      <div className="container d-flex justify-content-center align-items-center mt-5">
+        <div className="card shadow-lg p-4" style={{ width: '500px', borderRadius: '12px' }}>
+          {/* Card Header with Gradient */}
+          <div className="card-header text-white text-center" style={{ 
+            background: 'linear-gradient(135deg, #071952, #0a2a5c)', 
+            borderRadius: '10px 10px 0 0', 
+            padding: '15px' 
+          }}>
+            <h3>Apply for Job</h3>
+          </div>
+
+          <div className="card-body">
             <form onSubmit={handleSubmit}>
-              <TextField
-                label="Full Name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaUser style={{ marginRight: '8px' }} />
-                }}
-              />
-              
-              <TextField
-                label="Email Address"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaEnvelope style={{ marginRight: '8px' }} />
-                }}
-              />
+              {/* Full Name */}
+              <div className="mb-3">
+                <label className="form-label"><FaUser className="me-2" /> Full Name</label>
+                <input type="text" name="name" className="form-control rounded-3 shadow-sm" value={formData.name} onChange={handleChange} required />
+              </div>
 
-              <TextField
-                label="Mobile Phone Number"
-                name="phone"
-                type="text"
-                value={formData.phone}
-                onChange={handleChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaPhone style={{ marginRight: '8px' }} />
-                }}
-              />
+              {/* Email Address */}
+              <div className="mb-3">
+                <label className="form-label"><FaEnvelope className="me-2" /> Email Address</label>
+                <input type="email" name="email" className="form-control rounded-3 shadow-sm" value={formData.email} onChange={handleChange} required />
+              </div>
 
-              <TextField
-                label="Age"
-                name="age"
-                type="number"
-                value={formData.age}
-                onChange={handleChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaRegCalendarAlt style={{ marginRight: '8px' }} />
-                }}
-              />
+              {/* Mobile Phone Number */}
+              <div className="mb-3">
+                <label className="form-label"><FaPhone className="me-2" /> Mobile Phone Number</label>
+                <input type="text" name="phone" className="form-control rounded-3 shadow-sm" value={formData.phone} onChange={handleChange} required />
+              </div>
 
-              <TextField
-                label="Expected Salary"
-                name="salary"
-                type="number"
-                value={formData.salary}
-                onChange={handleChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaDollarSign style={{ marginRight: '8px' }} />
-                }}
-              />
+              {/* Age */}
+              <div className="mb-3">
+                <label className="form-label"><FaRegCalendarAlt className="me-2" /> Age</label>
+                <input type="number" name="age" className="form-control rounded-3 shadow-sm" value={formData.age} onChange={handleChange} required />
+              </div>
 
-              <TextField
-                label="Upload CV"
-                name="file"
-                type="file"
-                onChange={handleFileChange}
-                fullWidth
-                required
-                sx={{ marginBottom: '20px' }}
-                InputProps={{
-                  startAdornment: <FaFileUpload style={{ marginRight: '8px' }} />
-                }}
-              />
+              {/* Expected Salary */}
+              <div className="mb-3">
+                <label className="form-label"><FaDollarSign className="me-2" /> Expected Salary(Rs.)</label>
+                <input type="number" name="salary" className="form-control rounded-3 shadow-sm" value={formData.salary} onChange={handleChange} required />
+              </div>
 
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={formData.acceptTerms}
-                    onChange={handleCheckboxChange}
-                    name="acceptTerms"
-                    required
-                  />
-                }
-                label="I accept that all provided details are correct."
-                sx={{ color: '#071952' }}
-              />
+              {/* Upload CV */}
+              <div className="mb-3">
+                <label className="form-label"><FaFileUpload className="me-2" /> Upload CV</label>
+                <input type="file" name="file" className="form-control rounded-3 shadow-sm" onChange={handleFileChange} required />
+              </div>
 
-              <Button
-                type="submit"
-                variant="contained"
-                fullWidth
-                sx={{
-                  backgroundColor: '#088395',
+              {/* Terms Checkbox */}
+              <div className="form-check mb-3">
+                <input type="checkbox" className="form-check-input" id="terms" checked={formData.acceptTerms} onChange={handleCheckboxChange} required />
+                <label className="form-check-label" htmlFor="terms">I accept that all provided details are correct.</label>
+              </div>
+
+              {/* Submit Button with Dark Blue Styling */}
+              <button 
+                type="submit" 
+                className="btn w-100"
+                style={{
+                  backgroundColor: '#071952',
                   color: 'white',
-                  padding: '12px',
                   fontWeight: 'bold',
-                  boxShadow: 2,
-                  '&:hover': {
-                    backgroundColor: '#1f78c1',
-                  },
+                  padding: '12px',
+                  borderRadius: '6px',
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  transition: '0.3s',
+                  border: 'none'
                 }}
+                onMouseOver={(e) => e.target.style.backgroundColor = '#0a2a5c'}
+                onMouseOut={(e) => e.target.style.backgroundColor = '#071952'}
               >
                 Upload CV
-              </Button>
+              </button>
             </form>
-          </CardContent>
-        </Card>
-      </Container>
-      <Footer />  {/* Including the Footer component */}
+          </div>
+        </div>
+      </div>
+      <Footer />
     </div>
   );
 };
