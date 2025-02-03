@@ -103,7 +103,7 @@ const JobListingPage = () => {
                       to={`/jobs/${job.id}`}
                       className="btn btn-primary w-100 text-uppercase fw-bold"
                       style={{
-                        backgroundColor: "#083AA9",
+                        backgroundColor: 'rgb(10, 11, 66)',
                         borderColor: "#083AA9",
                         transition: "background-color 0.3s",
                       }}

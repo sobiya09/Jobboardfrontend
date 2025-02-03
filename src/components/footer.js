@@ -1,90 +1,50 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { FaFacebook, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
 function Footer() {
   return (
     <footer
       className="text-white py-4"
       style={{
-        backgroundColor: '#061953', 
+        background: 'linear-gradient(45deg, #061953, #0c2a67)',
         fontFamily: 'Poppins, Arial, sans-serif',
+        boxShadow: '0 5px 15px rgba(0, 0, 0, 0.2)',
       }}
     >
-      <div className="container">
-        <div className="row mb-3">
-          <div className="col-md-4 mb-3">
-            <h2 className="h4 fw-bold">Job board</h2>
-            <p className="mb-0" style={{ fontSize: '14px', lineHeight: '1.5' }}>
-              Empowering Careers, Connecting Opportunities.
-            </p>
-          </div>
-
-          <div className="col-md-4 mb-3">
-            <h4 className="h6 fw-semibold mb-2">Quick Links</h4>
-            <ul className="list-unstyled">
-              <li>
-                <a href="#home" className="text-white text-decoration-none small d-block mb-1">
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#about" className="text-white text-decoration-none small d-block mb-1">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-white text-decoration-none small d-block mb-1">
-                  Contact Us
-                </a>
-              </li>
-              <li>
-                <a href="#jobs" className="text-white text-decoration-none small d-block">
-                  Job Details
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="col-md-4 mb-3">
-            <h4 className="h6 fw-semibold mb-2">Follow Us</h4>
-            <div className="d-flex flex-column gap-1">
-              <a
-                href="https://facebook.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-decoration-none small"
-              >
-                🌐 Facebook
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-decoration-none small"
-              >
-                🌐 Twitter
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white text-decoration-none small"
-              >
-                🌐 LinkedIn
-              </a>
-            </div>
-          </div>
+      <div className="container text-center">
+        <p className="mb-3" style={{ fontSize: '14px' }}>
+          Empowering Careers, Connecting Opportunities. 
+        </p>
+        
+        <div className="d-flex justify-content-center gap-3 mb-3">
+          <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <FaFacebook size={20} />
+          </a>
+          <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <FaTwitter size={20} />
+          </a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="footer-link">
+            <FaLinkedin size={20} />
+          </a>
         </div>
 
-        <div
-          className="border-top pt-3 text-center"
-          style={{ borderColor: 'rgba(255,255,255,0.2)' }}
-        >
-          <p className="mb-0 small">
-            © {new Date().getFullYear()} Job board. All Rights Reserved.
-          </p>
-        </div>
+        <hr style={{ borderColor: 'rgba(255, 255, 255, 0.86)' }} />
+        
+        <p className="mb-0 small">© {new Date().getFullYear()} 🚀 Job Board. All Rights Reserved.</p>
       </div>
+
+      <style jsx>{`
+        .footer-link {
+          color: white;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+          color: #00bcd4 !important;
+        }
+      `}</style>
     </footer>
   );
 }

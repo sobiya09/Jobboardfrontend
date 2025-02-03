@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; // If you installed via npm
-import gifAnimation from '../../assets/Job_search.gif';
+// import gifAnimation from '../../assets/Job_search.gif';
 import CarouselSection from './carousel.section';
 
 function HomeSection() {

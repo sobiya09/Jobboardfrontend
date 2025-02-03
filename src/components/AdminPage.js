@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
-import jobImage from "../assets/Admin.jpg";
+import jobImage from "../assets/hs.png";
 import '../css/AdminDashboard.css';
+
 
 function AdminPage({ token }) {
   const [jobs, setJobs] = useState([]);
@@ -140,61 +141,113 @@ function AdminPage({ token }) {
 
   const renderAddJobSection = () => (
 <div>
-  <h2 className="text-center mb-2">Add a New Job</h2>
+  <h2 className="text-center mb-4">Add a New Job</h2>
   <div className="row justify-content-center">
-    <div className="col-md-6">
-      {['title', 'description','minimumqualification', 'location', 'company_name'].map((field) => (
-        <div className="mb-3" key={field}>
-          <label className="form-label text-muted">{field.replace('_', ' ').toUpperCase()}</label>
-          <input
-            type="text"
-            className="form-control custom-input"
-            placeholder={`Enter ${field}`}
-            value={newJob[field]}
-            onChange={(e) => setNewJob({ ...newJob, [field]: e.target.value })}
-          />
+    <div className="col-md-8">
+      <div className="row">
+        {/* Left Column */}
+        <div className="col-md-6">
+          <div className="mb-3">
+            <label className="form-label text-muted">Title</label>
+            <input
+              type="text"
+              className="form-control custom-input"
+              placeholder="Enter title"
+              value={newJob.title}
+              onChange={(e) => setNewJob({ ...newJob, title: e.target.value })}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label text-muted">Company Name</label>
+            <input
+              type="text"
+              className="form-control custom-input"
+              placeholder="Enter company name"
+              value={newJob.company_name}
+              onChange={(e) => setNewJob({ ...newJob, company_name: e.target.value })}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label text-muted">Location</label>
+            <input
+              type="text"
+              className="form-control custom-input"
+              placeholder="Enter location"
+              value={newJob.location}
+              onChange={(e) => setNewJob({ ...newJob, location: e.target.value })}
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label text-muted">Job Type</label>
+            <select
+              className="form-select custom-input"
+              value={newJob.type}
+              onChange={(e) => setNewJob({ ...newJob, type: e.target.value })}
+            >
+              <option value="">Select job type</option>
+              {['Full-time', 'Part-time', 'Internship', 'Contract', 'Temporary'].map((type) => (
+                <option key={type} value={type}>
+                  {type}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-      ))}
-      <div className="mb-3">
-        <label className="form-label text-muted">Job Type</label>
-        <select
-          className="form-select custom-input"
-          value={newJob.type}
-          onChange={(e) => setNewJob({ ...newJob, type: e.target.value })}
-        >
-          <option value="">Select job type</option>
-          {['Full-time', 'Part-time', 'Internship', 'Contract', 'Temporary'].map((type) => (
-            <option key={type} value={type}>
-              {type}
-            </option>
-          ))}
-        </select>
+
+        {/* Right Column */}
+        <div className="col-md-6">
+          <div className="mb-3">
+            <label className="form-label text-muted">Description</label>
+            <textarea
+              className="form-control custom-input"
+              rows="5"
+              placeholder="Enter job description"
+              value={newJob.description}
+              onChange={(e) => setNewJob({ ...newJob, description: e.target.value })}
+            ></textarea>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label text-muted">Minimum Qualification</label>
+            <textarea
+              className="form-control custom-input"
+              rows="5"
+              placeholder="Enter minimum qualification"
+              value={newJob.minimumqualification}
+              onChange={(e) => setNewJob({ ...newJob, minimumqualification: e.target.value })}
+            ></textarea>
+          </div>
+        </div>
       </div>
 
-
-
       <div className="mb-3">
-          <label className="form-label text-muted">Upload Image</label>
-          <input
-    type="file"
-    className="form-control"
-    onChange={(e) =>
-      setNewJob({ ...newJob, image: e.target.files[0] })
-    }
-  />
-        </div>  
-    
-      
+        <label className="form-label text-muted">Upload Image</label>
+        <input
+          type="file"
+          className="form-control"
+          onChange={(e) => setNewJob({ ...newJob, image: e.target.files[0] })}
+        />
+      </div>
+
       <div className="row justify-content-center">
-       <div className="col-md-6 d-flex justify-content-center">
-        <button className="btn btn-primary w-100 py-3 custom-btn" onClick={handleAddJob}>
-         Add Job
-        </button>
-  </div>
-</div>
+        <div className="col-md-6 d-flex justify-content-center">
+          <button
+            className="btn w-100 py-3 custom-btn"
+            style={{ backgroundColor: '#002147', color: 'white' }}
+            onClick={handleAddJob}
+          >
+            Add Job
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+
+
   );
 
   const renderMessagesSection = () => (
@@ -492,48 +545,85 @@ const renderUpdateJobsSection = () => (
 <div className="d-flex">
   {/* Sidebar */}
   <div
-    className="bg-custom text-white p-4 position-fixed"
-    style={{ width: '250px', height: '100vh', top: '0', left: '0' }}
+    className="text-white position-fixed d-flex flex-column justify-content-between"
+    style={{
+      width: "250px",
+      height: "100vh",
+      top: "0",
+      left: "0",
+      background: "rgba(2, 13, 32, 0.95)", // Dark blue shade
+      backdropFilter: "blur(8px)", // Glassmorphism effect
+      boxShadow: "4px 0px 15px rgba(34, 4, 4, 0.3)",
+      padding: "35px",
+      borderRight: "2px solid rgba(255, 255, 255, 0.11)",
+    }}
   >
+    {/* Admin Profile */}
     <div className="text-center mb-4">
-      {/* Admin Profile Picture */}
-      <img
-        src={jobImage}
-        alt="Admin Profile"
-        className="rounded-circle mb-2"
-        style={{ width: '100px', height: '100px', objectFit: 'cover' }}
-      />
-      <h5>Admin</h5>
+      <div
+        className="rounded-circle mx-auto d-flex justify-content-center align-items-center"
+        style={{
+          width: "110px",
+          height: "110px",
+          background: "rgba(255, 255, 255, 0.1)", // Frosted effect
+          boxShadow: "0px 0px 10px rgba(255, 255, 255, 0.3)",
+          border: "2px solid rgba(255, 255, 255, 0.3)",
+        }}
+      >
+        <img
+          src={jobImage}
+          alt="Admin Profile"
+          className="rounded-circle"
+          style={{ width: "100px", height: "100px", objectFit: "cover" }}
+        />
+      </div>
+      <h5 className="mt-2">Admin</h5>
     </div>
+
+    {/* Sidebar Navigation */}
     <ul className="nav flex-column">
-      <li className="nav-item mb-4">
-        <button className="nav-link text-white btn btn-link px-4 py-2" onClick={() => setView('add')}>
-          Add Jobs
-        </button>
-      </li>
-      <li className="nav-item mb-4">
-        <button className="nav-link text-white btn btn-link px-4 py-2" onClick={() => setView('view')}>
-          View Jobs
-        </button>
-      </li>
-      <li className="nav-item mb-4">
-        <button className="nav-link text-white btn btn-link px-4 py-2" onClick={() => setView('update')}>
-          Update Jobs
-        </button>
-      </li>
-      <li className="nav-item mb-4">
-        <button className="nav-link text-white btn btn-link px-4 py-2" onClick={() => setView('messages')}>
-          View Messages
-        </button>
-      </li>
-      <li className="nav-item mb-4">
-        <button className="nav-link text-white btn btn-link px-4 py-2" onClick={() => setView('cvs')}>
-          CV Details
-        </button>
-      </li>
+      {[
+        { name: "Add Jobs", view: "add" },
+        { name: "View Jobs", view: "view" },
+        { name: "Update Jobs", view: "update" },
+        { name: "View Messages", view: "messages" },
+        { name: "CV Details", view: "cvs" },
+      ].map((item, index) => (
+        <li key={index} className="nav-item mb-3">
+          <button
+            className="nav-link text-white btn btn-link px-4 py-2 w-100 text-start"
+            style={{
+              borderRadius: "8px",
+              transition: "0.3s",
+              fontWeight: "bold",
+              letterSpacing: "1px",
+              background: view === item.view ? "rgba(255, 255, 255, 0.2)" : "transparent",
+              boxShadow: view === item.view ? "0px 4px 10px rgba(255, 255, 255, 0.3)" : "none",
+            }}
+            onMouseOver={(e) => (e.target.style.background = "rgba(255, 255, 255, 0.2)")}
+            onMouseOut={(e) => (e.target.style.background = view === item.view ? "rgba(255, 255, 255, 0.2)" : "transparent")}
+            onClick={() => setView(item.view)}
+          >
+            {item.name}
+          </button>
+        </li>
+      ))}
     </ul>
-    <div className="mt-4">
-      <button className="btn btn-danger w-100 py-2" onClick={logout}>
+
+    {/* Logout Button */}
+    <div>
+      <button
+        className="btn w-100 py-2 fw-bold"
+        style={{
+          background: "linear-gradient(135deg, #ff416c, #ff4b2b)", // Gradient effect
+          transition: "0.3s",
+          borderRadius: "8px",
+          fontSize: "16px",
+        }}
+        onMouseOver={(e) => (e.target.style.background = "#ff3b3b")}
+        onMouseOut={(e) => (e.target.style.background = "linear-gradient(135deg, #ff416c, #ff4b2b)")}
+        onClick={logout}
+      >
         Logout
       </button>
     </div>
@@ -543,22 +633,34 @@ const renderUpdateJobsSection = () => (
   <div
     className="flex-grow-1 p-4"
     style={{
-      marginLeft: '250px', // Adjust content for sidebar width
-      backgroundColor: '#f2f2f2',
-      backgroundSize: 'cover', // Make sure the image covers the entire background
-    backgroundPosition: 'center', // Center the background image
-    
+      marginLeft: "270px", // Sidebar width
+      background: "url('https://source.unsplash.com/1600x900/?technology,abstract')",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      minHeight: "100vh",
+      color: "#333333", // Dark text for better readability
+      backdropFilter: "blur(8px)", // Smooth glass effect
+      padding: "20px",
     }}
   >
-    <h1 className="mb-3">Admin Dashboard</h1>
-    {view === 'add' && renderAddJobSection()}
-    {view === 'view' && renderViewJobsSection()}
-    {view === 'update' && renderUpdateJobsSection()}
-    {view === 'messages' && renderMessagesSection()}
-    {view === 'cvs' && renderCVsSection()}
+    {/* <h1 className="mb-3 fw-bold text-center" 
+        style={{ 
+          color: "#111111", // Darker color for visibility
+          textShadow: "2px 2px 5px rgba(0,0,0,0.3)", 
+          fontSize: "32px"
+        }}>
+      Admin Dashboard
+    </h1> */}
+    {view === "add" && renderAddJobSection()}
+    {view === "view" && renderViewJobsSection()}
+    {view === "update" && renderUpdateJobsSection()}
+    {view === "messages" && renderMessagesSection()}
+    {view === "cvs" && renderCVsSection()}
     {renderEditJobModal()}
   </div>
 </div>
+
+
 
   );
 }

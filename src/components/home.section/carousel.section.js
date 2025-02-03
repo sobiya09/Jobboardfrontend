@@ -9,26 +9,28 @@ function CarouselSection() {
     {
       id: 1,
       image: image1,
-      title: "Explore thousands of Opportunities",
+      title: "Unlock Endless Career Opportunities 🚀",
       description:
-        "Whether you're passionate about technology, healthcare, finance, or any other field, we have a vast array of jobs across industries waiting for you.",
-      button: { label: "Get Started", link: "/search-job" },
+        "From cutting-edge technology to healthcare, finance, and beyond—explore a world of job openings tailored to your passion and expertise.",
+      button: { label: "Get Started" ,link: "/jobs"},
     },
     {
       id: 2,
       image: image2,
-      title: "Discover Your Dream Job",
+      title: "Land Your Dream Job with Ease ✨",
       description:
-        "We connect you with opportunities that match not only your skills and experience but also your ambitions and aspirations.",
-      button: { label: "Get Started", link: "/post-job" },
+        "We bridge the gap between your skills, experience, and aspirations—connecting you with the perfect job opportunities that align with your career goals.",
+      button: { label: "Get Started", link: "/jobs" },
     },
     {
       id: 3,
       image: image3,
-      title: "Online Job Portal",
-      description: "We are there for you.",
-      button: { label: "Get Started", link: "/get-started" },
+      title: "Your Ultimate Online Job Hub 🌍",
+      description: 
+        "Empowering you with the best career opportunities—because your success starts here!",
+      button: { label: "Get Started", link: "/jobs" },
     },
+    
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -83,14 +85,14 @@ function CarouselSection() {
           </div>
 
           <button
-            className="btn btn-light position-absolute"
+            className="btn btn-dark position-absolute"
             style={{ top: "50%", left: "1rem", transform: "translateY(-50%)" }}
             onClick={goToPrev}
           >
             ❮
           </button>
           <button
-            className="btn btn-light position-absolute"
+            className="btn btn-dark position-absolute"
             style={{ top: "50%", right: "1rem", transform: "translateY(-50%)" }}
             onClick={goToNext}
           >
